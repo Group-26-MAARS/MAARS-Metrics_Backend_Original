@@ -1,0 +1,116 @@
+package com.maarsCloud.controller;
+
+import org.springframework.web.bind.annotation.CrossOrigin; 
+
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.*;
+import com.maarsCloud.model.*;
+import com.maarsCloud.service.*;
+import org.springframework.http.*;
+import java.util.*;
+
+@CrossOrigin(origins = "*", maxAge = 3600)
+@RestController
+@RequestMapping("/Users")
+
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+    
+    @Autowired
+    private ProcGenService procGenService;
+
+    @Autowired
+    private MaintenanceService maintenanceService;
+    
+    @Autowired
+    private DesignService designService;
+    
+    @Autowired
+    private TrainingService trainingService;
+
+    @PostMapping
+    public ApiResponse<User> saveUser(@RequestBody UserDto user){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User saved successfully.",userService.save(user));
+    }
+    
+    @PostMapping("/adduser")
+    public ApiResponse<User> saveUser(@RequestBody UserDto user){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User saved successfully.",userService.save(user));
+    }
+    
+    @PostMapping("/procgen")
+    public ApiResponse<User> saveProcGen(@RequestBody ProcGenDto procGen){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User saved successfully.",procGenService.save(procGen));
+    }
+    @PostMapping("/maintenance")
+    public ApiResponse<User> saveMaintenance(@RequestBody MaintenanceDto maintenance){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User saved successfully.",maintenanceService.save(maintenance));
+    }
+    @PostMapping("/design")
+    public ApiResponse<User> saveDesign(@RequestBody DesignDto design){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User saved successfully.",designService.save(design));
+    }
+    
+    @PostMapping("/training")
+    public ApiResponse<User> saveTraining(@RequestBody TrainingDto training){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User saved successfully.",trainingService.save(training));
+    }
+
+    @GetMapping
+    public ApiResponse<List<User>> listUser(){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User list fetched successfully.",userService.findAll());
+    }
+
+    @GetMapping("/dates")
+    public ApiResponse<List<User>> findAllDates(){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User list fetched successfully.",userService.findAllDates());
+    }
+    @GetMapping("/{id}")
+    public ApiResponse<User> getOne(@PathVariable int id){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User fetched successfully.",userService.findById(id));
+    }
+    @GetMapping("/recent")
+    public ApiResponse<User> mostRecent(){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User list fetched successfully.",userService.findRecent());
+    }
+    @GetMapping("/mostactive")
+    public ApiResponse<User> mostActive(){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User list fetched successfully.",userService.findActive());
+    }
+    @GetMapping("/procgen")
+    public ApiResponse<User> procGen(){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User list fetched successfully.",procGenService.findAllProcGen());
+    }
+    
+    @GetMapping("/maintenance")
+    public ApiResponse<User> maintenance(){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User list fetched successfully.",maintenanceService.findAllMaintenance());
+    }
+    @GetMapping("/maintenance/{emailAddress}")
+    public ApiResponse<User> maintenanceGetUser(@PathVariable String emailAddress){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User list fetched successfully.",maintenanceService.findMaintenanceUser(emailAddress));
+    }
+    
+    @GetMapping("/design")
+    public ApiResponse<User> design(){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User list fetched successfully.",designService.findAllDesign());
+    }
+    @GetMapping("/training")
+    public ApiResponse<User> training(){
+        return new ApiResponse<>(HttpStatus.OK.value(), "User list fetched successfully.",trainingService.findAllTraining());
+    }
+
+    @PutMapping("/{id}")
+    public ApiResponse<UserDto> update(@RequestBody UserDto userDto) {
+        return new ApiResponse<>(HttpStatus.OK.value(), "User updated successfully.",userService.update(userDto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ApiResponse<Void> delete(@PathVariable int id) {
+        userService.delete(id);
+        return new ApiResponse<>(HttpStatus.OK.value(), "User deleted successfully.", null);
+    }
+
+}

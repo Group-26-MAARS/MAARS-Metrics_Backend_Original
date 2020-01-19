@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.lang.FunctionalInterface"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.ApiResponse"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.ProcGen"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.service.ProcGenService"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.dao.ProcGenDao"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.ProcGenDto"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.service.MaintenanceService"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.dao.MaintenanceDao"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.dao.DesignDao"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.service.DesignService"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.dao.TrainingDao"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.service.TrainingService"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.Maintenance"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.MaintenanceDto"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.Training"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.TrainingDto"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.Design"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.DesignDto"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.service.UserService"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.User"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.AuthenticationUserDetailsService"/>
+    <fullyQualifiedTypeName name="org.springframework.security.core.userdetails.UserDetailsService"/>
+    <fullyQualifiedTypeName name="com.maarsCloud.model.AccessUser"/>
+</qualifiedTypeNameHistroy>

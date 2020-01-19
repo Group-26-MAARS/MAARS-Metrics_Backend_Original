@@ -1,0 +1,58 @@
+package com.maarsCloud.dao;
+
+import com.maarsCloud.model.User;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import org.springframework.data.jpa.repository.*;
+@Repository
+public interface UserDao extends CrudRepository<User, Integer> {
+    
+    User findByID(int ID);
+    
+	User findByUsername(String username);
+
+    @Query(value = "select DATE_FORMAT(subDate, \"%b %Y\"), Sum(subCount) from (\n" + 
+    		"select myDate as subDate, Count(myCount) as subCount\n" + 
+    		"from (\n" + 
+    		"select Date(mostRecentDate) As myDate, ID As myCount\n" + 
+    		"from maintenance a\n" + 
+    		"UNION all\n" + 
+    		"select Date(mostRecentDate) As myDate, ID As myCount\n" + 
+    		"from training b\n" + 
+    		"UNION ALL\n" + 
+    		"select Date(date) As myDate, ID as myCount\n" + 
+    		"from proceduregeneration c\n" + 
+    		"UNION ALL\n" + 
+    		"select Date(mostRecentDate) As myDate, ID as myCount\n" + 
+    		"from training d\n" + 
+    		") T\n" + 
+    		"group by myDate\n" + 
+    		"order by myDate DESC\n" + 
+    		") sub\n" + 
+    		"group by DATE_FORMAT(subDate, \"%b %Y\")\n" + 
+    		"order by subDate ASC;\n" + 
+    		"", 
+    		  nativeQuery = true)
+    		List<?> findAllDates();
+    /*
+    @Query(value = "select u.emailAddress, m.mostRecentDate, m.totalTime from users u, maintenance m" 
+   			+"where u.ID = m.userID And u.emailAddress = %?1 order by m.mostRecentDate DESC limit 1;",
+  		  nativeQuery = true)
+    void addUser(String emailAddress);
+    */
+    
+     @Query(value = "SELECT firstName, lastName, ID, mostRecentDateAllActivities FROM users ORDER BY"
+     		+ " mostRecentDateAllActivities DESC LIMIT 3", 
+    		  nativeQuery = true)
+    		List<?> findRecent();
+     
+     @Query(value = "SELECT firstName, lastName, ID, totalTimeAllActivities FROM users ORDER BY"
+     		+ " totalTimeAllActivities DESC LIMIT 3", 
+     		  nativeQuery = true)
+     		List<?> findActive();
+     
+}
